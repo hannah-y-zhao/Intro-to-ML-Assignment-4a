@@ -5,7 +5,9 @@ let myNN, myNNresults;
 let instructions, startBttn, trainBttn, saveBttn;
 let lineY;
 let collectData = false;
+let popupArr=[]
 
+let numPops;
 
 function setup() {
   createCanvas(640, 480);
@@ -89,16 +91,56 @@ function draw() {
   }
   dataCollect();
 
+  stroke("white");
+  strokeWeight(3);
+  line(0, lineY, width, lineY);
+
   if (myNNresults) {
     noStroke()
     textSize(20);
     fill("white")
     text(myNNresults[0].label + ', ' + myNNresults[0].confidence, width / 2, height * 1 / 4, width * 3 / 4, height / 2);
-  }
+  
+    // if(myNNresults[0].label == 'none'){
+    //   numPops=0
 
-  stroke("white");
-  strokeWeight(3);
-  line(0, lineY, width, lineY);
+    // }else if (myNNresults[0].label == 'indexMiddleRingPinkyThumb'){
+    //   numPops=5
+    // }else if (myNNresults[0].label == 'indexMiddleRingPinky'){
+    //   numPops=4
+    // }else if (myNNresults[0].label == 'indexMiddleRing'){
+    //   numPops=3
+    // }else if (myNNresults[0].label == 'indexMiddle'){
+    //   numPops=2
+    // }else if (myNNresults[0].label == 'index'){
+    //   numPops=1
+    // }
+    // // else if (myNNresults[0].label == 'thumbsUp'){
+    // //   fill('green')
+    // //   rect(0,0,width,height)
+    // //   noLoop()
+    // // }
+    // if (numPops>0){
+    //   for (i=0; i<numPops; i++){
+    //     popupArr=[]
+    //     popupArr.push(new Popup(width*1/4+i*20,height*1/4+i*20))
+        
+    //   }
+    // }
+    // if (popupArr.length>0){
+    //   for (i=0; i<popupArr; i++){
+    //     popupArr[i].display()
+    //   }
+    // }
+  }
+}
+
+function displayPopup(){
+  if (popupArr.length>0){
+    for (i=0; i<popupArr; i++){
+      popupArr[i].display()
+    }
+  }
 }
 
 function startDataCollect() {
